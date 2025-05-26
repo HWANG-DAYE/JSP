@@ -12,7 +12,6 @@ import util.JdbcConnection;
 //4) ?채우기
 //5-1) insert, update, delete -> executeUpdate(), int(처리된 행의 수)
 //5-2) select -> executeQuery(), ResultSet rs
-//2~5-2까지 선택 후 try/catch
 
 public class RegisterDao extends JdbcConnection {
 	public int insert(Register r) {

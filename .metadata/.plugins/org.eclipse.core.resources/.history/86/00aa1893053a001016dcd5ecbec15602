@@ -6,14 +6,6 @@ import java.util.ArrayList;
 import dto.Register;
 import util.JdbcConnection;
 
-//1) 반환값 지정할 변수 선언
-//2) sql문 작성
-//3) psmt 객체 생성
-//4) ?채우기
-//5-1) insert, update, delete -> executeUpdate(), int(처리된 행의 수)
-//5-2) select -> executeQuery(), ResultSet rs
-//2~5-2까지 선택 후 try/catch
-
 public class RegisterDao extends JdbcConnection {
 	public int insert(Register r) {
 		// 1) 반환값 저장할 변수 선언
