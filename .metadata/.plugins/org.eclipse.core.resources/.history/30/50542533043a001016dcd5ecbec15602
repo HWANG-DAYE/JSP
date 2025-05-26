@@ -1,0 +1,122 @@
+package dao;
+
+import java.sql.SQLException;
+
+import dto.Register;
+import util.JdbcConnection;
+
+public class RegisterDao extends JdbcConnection {
+	public int insert(Register r) {
+		// 1) 반환값 저장할 변수 선언
+		int res = 0;
+		// 2) sql문 작성
+		try {
+			String str = "insert into register values(?,?,?,?)";
+			// 3) psmt 객체 생성
+			psmt = con.prepareStatement(str);
+			// 4) ?채우기
+			psmt.setString(1, r.getId());
+			psmt.setString(2, r.getPwd());
+			psmt.setString(3, r.getName());
+			psmt.setString(4, r.getEmail());
+			// 5) 실행
+			res = psmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	public int delete(String id) {
+		// 1) 반환값 저장할 변수 선언
+		int res = 0;
+		// 2) sql문 작성
+		try {
+			String str = "delete from register where id = ?";
+			// 3) psmt 객체 생성
+			psmt = con.prepareStatement(str);
+			// 4) ?채우기
+			psmt.setString(1, id);
+			// 5) 실행
+			res = psmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	public int update(Register r) {
+		// 1) 반환값 저장할 변수 선언
+		int res = 0;
+		// 2) sql문 작성
+		try {
+			String str = "update register set pwd = ?, name = ?, email = ? where id = ?";
+			// 3) psmt 객체 생성
+			psmt = con.prepareStatement(str);
+			// 4) ?채우기
+			psmt.setString(1, r.getPwd());
+			psmt.setString(2, r.getName());
+			psmt.setString(3, r.getEmail());
+			psmt.setString(4, r.getId());
+			// 5) 실행
+			res = psmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	public Register select(String id) {
+		// 1) 반환값 저장할 변수 선언
+		Register r = null;
+		// 2) sql문 작성
+		try {
+			String str = "select * from register where id = ?";
+			// 3) psmt 객체 생성
+			psmt = con.prepareStatement(str);
+			// 4) ?채우기
+			psmt.setString(1, id);
+			// 5) 실행
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				r = new Register();
+				r.setId(rs.getString(1));
+				r.setPwd(rs.getString(2));
+				r.setName(rs.getString(3));
+				r.setEmail(rs.getString(4));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return r;
+	}
+	
+	public Register selectList() {
+		// 1) 반환값 저장할 변수 선언
+		Register r = null;
+		// 2) sql문 작성
+		try {
+			String str = "select * from register";
+			// 3) psmt 객체 생성
+			psmt = con.prepareStatement(str);
+			// 4) ?채우기
+			// 5) 실행
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				r = new Register();
+				r.setId(rs.getString(1));
+				r.setPwd(rs.getString(2));
+				r.setName(rs.getString(3));
+				r.setEmail(rs.getString(4));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return r;
+	}
+}

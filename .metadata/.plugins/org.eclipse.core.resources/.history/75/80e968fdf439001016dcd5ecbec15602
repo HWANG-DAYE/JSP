@@ -1,0 +1,9 @@
+select * from member;
+
+create table testMember(
+	id varchar(10) primary key,
+	pwd varchar(20)
+);
+
+
+select * from testMember;

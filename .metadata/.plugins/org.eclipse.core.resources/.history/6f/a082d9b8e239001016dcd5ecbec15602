@@ -1,0 +1,11 @@
+package util;
+
+public class ConnectionTest {
+
+	public static void main(String[] args) throws Exception {
+		JdbcConnection jdbc1 = new JdbcConnection();
+		System.out.println(jdbc1.con);
+		
+		jdbc1.con.close();
+	}
+}

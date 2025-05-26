@@ -1,0 +1,17 @@
+package dao;
+
+import dto.Register;
+import util.JdbcConnection;
+
+public class RegisterDao extends JdbcConnection{
+	public int insert(Register r) {
+		// 1) 반환값 저장할 변수 선언
+		int res = 0;
+		// 2) sql문 작성
+		String str = "insert into register values(?,?,?,?)";
+		// 3) psmt 객체 생성
+		psmt = con.prepareStatement(str);
+		//4)  ?채우기
+		psmt.setString(1, r.getId());
+	}
+}
