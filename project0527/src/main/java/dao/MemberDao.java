@@ -90,7 +90,7 @@ public class MemberDao extends JdbcConnection {
 		public int delete(String id) {
 			int cnt = 0;
 			try {
-				String sql = "delete from member where num = ?";
+				String sql = "delete from member where id = ?";
 				psmt = con.prepareStatement(sql);
 				psmt.setString(1, id);
 				cnt = psmt.executeUpdate();

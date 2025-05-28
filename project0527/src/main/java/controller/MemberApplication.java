@@ -13,9 +13,9 @@ public class MemberApplication {
 		Scanner sc = new Scanner(System.in);
 		boolean run = true;
 		while (run) {
-			System.out.println("-----------------------------------------------------------------");
-			System.out.println("1.회원가입 | 2.회원목록조회 | 3.회원탈퇴 | 4.로그인 | 5.회원정보수정 | 6.종료 ");
-			System.out.println("-----------------------------------------------------------------");
+			System.out.println("---------------------------------------------------------------");
+			System.out.println("1.회원가입 | 2.회원조회 | 3.회원탈퇴 | 4.로그인 | 5.회원정보수정 | 6.종료 ");
+			System.out.println("---------------------------------------------------------------");
 			System.out.print("선택> ");
 
 			int selectNo = sc.nextInt();
@@ -24,7 +24,6 @@ public class MemberApplication {
 			if (selectNo == 1) {
 				System.out.print("아이디 : ");
 				String id = sc.next();
-				sc.nextLine();
 				System.out.print("비밀번호 : ");
 				String pwd = sc.next();
 				System.out.print("이름 : ");
