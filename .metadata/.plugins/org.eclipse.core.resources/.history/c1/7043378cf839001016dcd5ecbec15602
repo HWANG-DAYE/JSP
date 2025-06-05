@@ -1,7 +1,0 @@
-package dao;
-
-import util.JdbcConnection;
-
-public class RegisterDao extends JdbcConnection{
-
-}

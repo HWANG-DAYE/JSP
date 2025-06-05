@@ -60,7 +60,7 @@
          APR (HTTP/AJP) Connector: /docs/apr.html
          Define a non-SSL/TLS HTTP/1.1 Connector on port 8080
     -->
-    <Connector connectionTimeout="20000" port="8080" protocol="HTTP/1.1" redirectPort="8443"/>
+    <Connector connectionTimeout="20000" port="8081" protocol="HTTP/1.1" redirectPort="8443"/>
     <!-- A "Connector" using the shared thread pool-->
     <!--
     <Connector executor="tomcatThreadPool"
@@ -152,7 +152,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="C:\2025_JSP\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\2025_JSP\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\project0526" path="/project0526" reloadable="true" source="org.eclipse.jst.jee.server:project0526"/><Context docBase="C:\2025_JSP\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\project0528" path="/project0528" reloadable="true" source="org.eclipse.jst.jee.server:project0528"/></Host>
+      <Context docBase="C:\2025_JSP\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\2025_JSP\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\project0604" path="/project0604" reloadable="true" source="org.eclipse.jst.jee.server:project0604"/><Context docBase="C:\2025_JSP\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\project0605" path="/project0605" reloadable="true" source="org.eclipse.jst.jee.server:project0605"/></Host>
     </Engine>
   </Service>
 </Server>
