@@ -12,5 +12,6 @@
 	Date date = new Date();
 	out.println(date.toLocaleString());
 %>
+	<img src="img/1.jpg">
 </body>
 </html>
