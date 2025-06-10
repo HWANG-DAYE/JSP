@@ -11,9 +11,6 @@
 <link rel="stylesheet" href="login2.css">
 </head>
 <body>
-
-
-
 	<form action="LoginProcess.jsp" method="post" onsubmit="return formCheck(this);">
 		<h3 id="title">Green</h3>
 		<div id="msg"></div>
