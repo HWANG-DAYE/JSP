@@ -26,4 +26,8 @@
     <param-name>MySqlPwd</param-name>
     <param-value>0000</param-value>
   </context-param>
+  
+  <session-config>
+  	<session-timeout>20</session-timeout>
+  </session-config>
 </web-app>

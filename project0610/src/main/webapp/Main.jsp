@@ -8,6 +8,6 @@
 </head>
 <body>
 <h1>메인화면</h1>
-<a href="LoginForm.jsp">로그인</a>
+<a href="Login.jsp">로그인</a>
 </body>
 </html>

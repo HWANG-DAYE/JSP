@@ -21,7 +21,7 @@
 		}
 		JSFunction.alertLocation("로그인되었습니다.", "Main.jsp", out);
 	}else {
-		//request.getRequestDispatcher("LoginForm.jsp").forward(request, response);
+		//request.getRequestDispatcher("Login.jsp").forward(request, response);
 		JSFunction.alertBack("아이디와 비밀번호를 확인해주세요.", out);
 	}
 		

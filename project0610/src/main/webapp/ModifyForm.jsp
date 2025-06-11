@@ -1,3 +1,8 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Arrays"%>
+<%@page import="java.util.List"%>
+<%@page import="dto.Member"%>
+<%@page import="dao.MemberDao"%>
 <%@ page import="java.net.URLDecoder" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -92,26 +97,37 @@
     <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
-	<form id="user" name="registerform" action="RegisterProcess.jsp" method="post" onsubmit="return formCheck(this)"> 	
-	    <div class="title">Register</div>
+	<%
+		MemberDao dao = new MemberDao(application);
+		Member m = dao.select(request.getParameter("id"));
+		List<String> snsarr = new ArrayList<>();
+		if(m.getSns()!=null) {
+			String[] sns = m.getSns().split(",");
+			snsarr = Arrays.asList(sns);
+		}
+		
+	%>
+
+	<form id="user" name="registerform" action="ModifyProcess.jsp" method="post" onsubmit="return formCheck(this)"> 	
+	    <div class="title">회원정보수정</div>
 	    
 	    <div id="msg" class="msg"></div> 
 	    <label for="id">아이디</label>
-	    <input class="input-field" id="id" type="text" name="id" placeholder="8~12자리의 영대소문자와 숫자 조합" autofocus>
+	    <input class="input-field" id="id" type="text" name="id" placeholder="8~12자리의 영대소문자와 숫자 조합" autofocus readonly value="<%=m.getId()%>">
 	    <label for="pwd">비밀번호</label>
 	    <input class="input-field" id="pwd" type="password" name="pwd" placeholder="8~12자리의 영대소문자와 숫자 조합">
 	    <label for="cpwd">비밀번호확인</label>
 	    <input class="input-field" id="cpwd" type="password" name="cpwd" placeholder="8~12자리의 영대소문자와 숫자 조합">
 	    <label for="name">이름</label>
-	    <input class="input-field"  id="name" type="text" name="name" 	placeholder="홍길동">
+	    <input class="input-field"  id="name" type="text" name="name" 	placeholder="홍길동" value="<%=m.getName() %>">
 	    <label for="email">이메일</label>
-	    <input class="input-field"  id="email" type="email" name="email" placeholder="example@greenart.co.kr"> 
+	    <input class="input-field"  id="email" type="email" name="email" placeholder="example@greenart.co.kr" value="<%=m.getEmail()%>"> 
 	    <label for="birth">생일</label>
-	    <input class="input-field" id="birth" type="text" name="birth" placeholder="2022-12-15" >
+	    <input class="input-field" id="birth" type="text" name="birth" placeholder="2022-12-15" value="<%=m.getBirth()%>">
 	    <div class="sns-chk">
-	        <label><input type="checkbox" name="sns" value="facebook"/>페이스북</label>
-	        <label><input type="checkbox" name="sns" value="kakaotalk"/>카카오톡</label>
-	        <label><input type="checkbox" name="sns" value="instagram"/>인스타그램</label>
+	        <label><input type="checkbox" name="sns" value="facebook" <%= snsarr.contains("facebook")? "checked": "" %>>페이스북</label>
+	        <label><input type="checkbox" name="sns" value="kakaotalk" <%= snsarr.contains("kakaotalk")? "checked": "" %>>카카오톡</label>
+	        <label><input type="checkbox" name="sns" value="instagram" <%= snsarr.contains("instagram")? "checked": "" %>>인스타그램</label>
 	    </div>
 	    <input id="input-submit" type="submit" value="회원가입"></input>
    </form> 

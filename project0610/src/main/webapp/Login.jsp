@@ -15,7 +15,7 @@
 		Cookie[] cookies = request.getCookies();
 		for(Cookie cookie : cookies) {
 			if(cookie != null) {
-				if("cid".equals(cookie.getName())){
+				if("id".equals(cookie.getName())){
 				id = cookie.getValue();
 				check = "checked";
 				}
