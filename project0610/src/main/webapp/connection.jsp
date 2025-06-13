@@ -1,4 +1,9 @@
 
+<%@page import="dto.Board"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
+<%@page import="dao.BoardDao"%>
 <%@page import="java.sql.Date"%>
 <%@page import="dto.Member"%>
 <%@page import="dao.MemberDao"%>
@@ -26,12 +31,27 @@
 	jdbc3.close();  -->
 	
 <%	
+/* 
 	MemberDao dao = new MemberDao(application);
-/* 	Member m = new Member("asdf2", "1234", "홍길동", 
+	Member m = new Member("asdf2", "1234", "홍길동", 
 			"asdf@naver.com",
 			Date.valueOf("2012-12-12"), "insta");
 	int res = dao.insert(m);
-	out.println(res); */
+	out.println(res); 
 	
 	out.println(dao.select("asdf"));
+	*/
+	
+	
+	Map<String, String> map = new HashMap<>();
+	map.put("searchWord", "제목2");
+	map.put("searchField", "title");
+	
+	BoardDao dao = new BoardDao(application);
+	List<Board> blist = dao.selectList(map);
+	out.println(blist);
+	
+	int n = dao.selectCount(map);
+	out.println("개수 : " + n);
+	dao.close();
 %>

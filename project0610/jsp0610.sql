@@ -1,9 +1,23 @@
-insert into member(id, pwd, name, email, birth, sns) values('asdf', '1234', '홍길동', 'asdf@naver.com', '2015-12-12', 'insta');
-insert into member(id, pwd, name, email, birth, sns) values('qwer', '1234', '홍길동', 'asdf@naver.com', '2015-12-12', 'insta');
-select id, pwd, name, email, birth, sns, reg_date from member;
-update member set pwd = '1111', name='김길동', email= 'qwer@naver.com', birth='2015-12-12', sns='kakao' where id='qwer';
-delete from member where id = 'qwer';
-select id, pwd, name, email, birth, sns, reg_date from member where id = 'asdf';
+insert into user(id, pass, name) values('asdf', '1234', '홍길동');
 
-insert into member(id, pwd, name, email, birth, sns) 
-values(?,?,?,?,?,?);
+select * from user where id = 'asdf';
+
+select * from board;
+
+insert into board(title, content, id) values('제목2', '내용1', 'asdf');
+
+select b.*, u.name from board b
+inner join user u
+on b.id = u.id
+where num = 1;
+
+select * from board 
+where title like '%제목2%'
+order by num desc;
+
+select count(*) from board
+where title like '%제목2%';
+
+update board set title='수정제목', content='수정제목' where id = 'asdf' and num = 11;
+
+delete from board where id = 'asdf' and num=10;
