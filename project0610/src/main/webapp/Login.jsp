@@ -32,7 +32,9 @@
         <button>로그인</button>
         <div>
             <label><input type="checkbox" name="rememberId" <%=check %>> 아이디 기억</label> 
+            <a href="RegisterForm.jsp">회원가입</a>
         </div>
+        <input type="hidden" name="url" value=<%=request.getParameter("url") %>>
 	</form>
 	<script>
 	    function formCheck(frm) {

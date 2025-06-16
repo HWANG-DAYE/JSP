@@ -10,8 +10,7 @@
 	
 	MemberDao dao = new MemberDao(application);
 	Member m = dao.select(id);
-	if(m!=null) {
-		if(m.getId().equals(id) && m.getPwd().equals(pwd)) {
+	if(m!=null && m.getId().equals(id) && m.getPwd().equals(pwd)) {
 			if(rememberId != null) {
 				Cookie cookie = new Cookie("id", id);
 				cookie.setPath(request.getContextPath());
@@ -28,9 +27,6 @@
 		}else{
 			JSFunction.alertBack("아이디와 비밀번호를 확인해주세요.", out);
 		}
-	}else{
-		JSFunction.alertBack("아이디와 비밀번호를 확인해주세요.", out);
-	}
 	
 	dao.close();
 %>

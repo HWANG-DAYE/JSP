@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -7,6 +8,7 @@ import java.util.Map;
 import javax.servlet.ServletContext;
 
 import dto.Board;
+import dto.Member;
 import util.JDBConnect;
 
 public class BoardDao extends JDBConnect {
@@ -69,5 +71,98 @@ public ArrayList<Board> selectList(Map<String, String>map) {
 	}
 	return blist;
 }
+	public int insert(Board b) {
+		int res = 0;
+		try {
+			String sql = "insert into board(title, content, id) "
+					+ "values(?, ?, ?)";
+			psmt = con.prepareStatement(sql);
+			
+			psmt.setString(1, b.getTitle());
+			psmt.setString(2, b.getContent());
+			psmt.setString(3, b.getId());
+			res = psmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
 	
+	public Board select(int num) {
+		Board b = null;
+		try {
+			String sql = "select b.*, u.name from board b "
+					+ "inner join user u "
+					+ "on b.id = u.id "
+					+ "where num = ?";
+					psmt = con.prepareStatement(sql);
+					psmt.setInt(1, num);
+					rs = psmt.executeQuery();
+					if(rs.next()) {
+						b = new Board();
+						b.setNum(rs.getInt(1));
+						b.setTitle(rs.getString(2));
+						b.setContent(rs.getString(3));
+						b.setId(rs.getString(4));
+						b.setPostDate(rs.getDate(5));
+						b.setViewCnt(rs.getInt(6));
+						b.setName(rs.getString(7));
+					}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				return b;
+	}
+	
+	public int updateViewCnt(int num) {
+		int res = 0;
+		try {
+			String sql = "update board set viewCnt = viewCnt + 1 where num = ?";
+			psmt = con.prepareStatement(sql);
+			
+			psmt.setInt(1, num);
+			res = psmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	public int update(Board b) {
+		int res = 0;
+		try {
+			String sql = "update board set title = ?, content = ? where num = ? and id = ?";
+			psmt = con.prepareStatement(sql);
+			
+			psmt.setString(1, b.getTitle());
+			psmt.setString(2, b.getContent());
+			psmt.setInt(3, b.getNum());
+			psmt.setString(4, b.getId());
+			res = psmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	public int delete(Board b) {
+		int res = 0;
+		try {
+			String sql = "delete from board where num = ? and id = ?";
+			psmt = con.prepareStatement(sql);
+			
+			psmt.setInt(1, b.getNum());
+			psmt.setString(2, b.getId());
+			
+			res = psmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
 }

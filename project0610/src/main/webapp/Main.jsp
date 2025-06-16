@@ -7,7 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+<%@ include file="./Navi.jsp" %>
 <h1>메인화면</h1>
-<a href="Login.jsp">로그인</a>
+
 </body>
 </html>

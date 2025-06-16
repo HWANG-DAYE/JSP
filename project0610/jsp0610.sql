@@ -1,6 +1,10 @@
-insert into user(id, pass, name) values('asdf', '1234', '홍길동');
+insert into user(id, pwd, name) values('asdf', '1234', '홍길동');
+insert into user(id, pwd, name) values('bwer', '1234', '아이유');
+
+select * from user;
 
 select * from user where id = 'asdf';
+select * from user where id = 'bwer';
 
 select * from board;
 
@@ -21,3 +25,10 @@ where title like '%제목2%';
 update board set title='수정제목', content='수정제목' where id = 'asdf' and num = 11;
 
 delete from board where id = 'asdf' and num=10;
+
+update board set viewCnt = viewCnt + 1 where num = 1;
+
+update board set title = '제목수정', content = '내용수정' where num = 1 and id = 'asdf';
+select * from board where num = 1;
+
+delete from board where num = 1 and id = 'asdf';
