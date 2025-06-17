@@ -2,13 +2,11 @@ package dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
 
 import dto.Board;
-import dto.Member;
 import util.JDBConnect;
 
 public class BoardDao extends JDBConnect {
