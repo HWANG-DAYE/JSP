@@ -1,0 +1,89 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: 'OAGothic-ExtraBold';
+	src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/OAGothic-ExtraBold.woff2')
+	format('woff2');
+	font-weight: 800;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'NanumSquareNeo-Variable';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	box-sizing: border-box;
+	font-family: NanumSquareNeo-Variable;
+}
+
+a {
+	text-decoration: none;
+}
+
+form {
+	width: 400px;
+	height: 500px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border: 1px solid #000;
+	border-radius: 10px;
+}
+
+input[type='text'], input[type='password'] {
+	width: 300px;
+	height: 40px;
+	border: 1px solid #000;
+	border-radius: 5px;
+	padding: 0 10px;
+	margin-bottom: 10px;
+}
+
+input[type='text']:focus, input[type='password']:focus {
+	outline: 1px solid #000;
+	solid: none;
+}
+
+button {
+	background-color: #000;
+	color: white;
+	width: 300px;
+	height: 50px;
+	font-size: 17px;
+	border: none;
+	border-radius: 5px;
+	margin: 20px 0 30px 0;
+}
+
+#title {
+	font-family: OAGothic-ExtraBold;
+	font-size: 50px;
+	margin: 40px 0 30px 0;
+	color: #000
+}
+
+#msg {
+	height: 30px;
+	text-align: center;
+	font-size: 16px;
+	color: red;
+	margin-bottom: 20px;
+}
+
+#bg{
+	border:1px solid black;
+	width:200px;
+	height:200px;
+	background: url("../img/images.jpg") no-repeat center;	
+
+}
