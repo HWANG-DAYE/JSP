@@ -1,0 +1,82 @@
+@font-face {
+    font-family: 'OAGothic-ExtraBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/OAGothic-ExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+	margin:0;
+	padding:0;
+	font-family: 'NanumSquareNeo-Variable';
+}
+#logo{
+	font-family:OAGothic-ExtraBold;
+	display:block;
+	margin:20px 10px;
+	color:#FF8C00;
+	font-size:30px;
+	text-decoration:none;
+}
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: #FF8C00;
+    overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  font-family:"NanumSquareNeo-Variable";
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* hover이벤트 발생 시 색상 변경되는 부분*/
+.topnav a:hover {
+  background-color: #EFFFE9;
+  color: black;
+}
+
+/* 로고 
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}*/
+
+/* Right-aligned section inside the top navigation */
+.topnav-right {
+  float: right;
+}
+
+.topnav::after{
+	clear:both;
+	display:block;
+	content:'';
+}
+
+#title{
+	display:flex;
+	justify-content:space-between;
+}
+div#log{
+	width:210px;
+}
+div#text{
+	line-height:70px;
+	transform:translateY(20px);
+}
+#name{
+	color:blue;
+	font-weight:bold;
+}
