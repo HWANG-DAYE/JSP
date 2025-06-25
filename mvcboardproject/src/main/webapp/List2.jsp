@@ -9,6 +9,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -204,14 +205,24 @@ select[name="searchField"] {
 							<!--게시물 번호-->
 							<td>
 								<!--제목(+ 하이퍼링크)--> <a
-								href="view?num=${dto.num }&page=${ph.page }">${dto.title }</a>
+								href="view${ph.sc.queryString}&num=${dto.num}">${dto.title }</a>
 							</td>
 							<td>${dto.id }</td>
-							<!--작성자 아이디-->
 							<td>${dto.viewCnt }</td>
-							<!--조회수-->
-							<td>${dto.postDate }</td>
-							<!--작성일-->
+							<fmt:formatDate value="${tday }" type="date" pattern="yyyy-MM-dd"
+								var="today" />
+							<fmt:formatDate value="${dto.postDate }" type="date"
+								pattern="yyyy-MM-dd" var="postdate" />
+							<c:choose>
+								<c:when test="${today eq postdate }">
+									<td><fmt:formatDate value="${dto.postDate }" type="time"
+											pattern="HH:mm" /></td>
+								</c:when>
+
+								<c:otherwise>
+									<td>${postdate }</td>
+								</c:otherwise>
+							</c:choose>
 						</tr>
 					</c:forEach>
 				</c:otherwise>
@@ -219,43 +230,27 @@ select[name="searchField"] {
 		</table>
 	</div>
 
-	<c:if test="${ph.showPrev }">
-		<c:url value="/list" var="url">
-			<c:param name="page" value="${ph.beginPage-1 }" />
-			<c:if test="${not empty param.searchWord }">
-				<c:param name="searchWord" value="${param.searchWord }" />
-				<c:param name="searchField" value="${param.searchField }" />
-			</c:if>
-		</c:url>
-		<a href="${url }">&lt;</a>
-	</c:if>
-	<c:forEach begin="${ph.beginPage }" end="${ph.endPage }" var="i">
-		<c:url value="/list" var="pageUrl">
-			<c:param name="page" value="${i }" />
-			<c:if test="${not empty param.searchWord }">
-				<c:param name="searchWord" value="${param.searchWord }" />
-				<c:param name="searchField" value="${param.searchField }" />
-			</c:if>
-		</c:url>
-		<c:choose>
-			<c:when test="${ph.page eq i }">
-				<a class='check' href="${pageUrl }">&nbsp;${i } </a>
-			</c:when>
-			<c:otherwise>
-				<a href="${pageUrl }">${i } </a>
-			</c:otherwise>
-		</c:choose>
-	</c:forEach>
-	<c:if test="${ph.showNext }">
-		<c:url value="/list" var="lastPage">
-			<c:param name="page" value="${ph.endPage+1 }" />
-			<c:if test="${not empty param.searchWord }">
-				<c:param name="searchWord" value="${param.searchWord }" />
-				<c:param name="searchField" value="${param.searchField }" />
-			</c:if>
-		</c:url>
-		<a href="${lastPage }">&gt;</a>
-	</c:if>
+	<!-- 페이지 추가 -->
+	<div>
+		<c:if test="${ph.showPrev }">
+			<a href="list2${ph.sc.getQueryString(ph.beginPage-1)}">&lt;</a>
+		</c:if>
+		<c:forEach begin="${ph.beginPage }" end="${ph.endPage }" var="i">
+			<c:choose>
+				<c:when test="${ph.sc.page eq i }">
+					<a class='check' href="list2${ph.sc.getQueryString(i)}">&nbsp;${i }
+					</a>
+				</c:when>
+				<c:otherwise>
+					<a href="list2${ph.sc.getQueryString(i)}">${i } </a>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+		<c:if test="${ph.showNext }">
+			<a href="list2${ph.sc.getQueryString(ph.endPage+1)}">&gt;</a>
+		</c:if>
+	</div>
+
 	<div id="dBtn">
 		<button class="btn" type="button" onclick="location.href='write'">글쓰기</button>
 	</div>

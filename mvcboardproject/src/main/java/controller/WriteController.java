@@ -18,8 +18,10 @@ public class WriteController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
+		String uri = req.getRequestURI();
+		
 		if(session.getAttribute("id")==null) {
-			JSFunction.alertLocation("로그인 후 이용하세요.", "login", resp);
+			JSFunction.alertLocation("로그인 후 이용하세요.", "login?url="+uri, resp);
 		}
 		req.getRequestDispatcher("/Write.jsp").forward(req, resp);
 	}

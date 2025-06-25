@@ -10,6 +10,7 @@ public class Board {
 	private Date postDate;
 	private int viewCnt;
 	private String name;
+	private int commentCnt;
 	
 	public Board(String title, String content, String id) {
 		super();
@@ -27,6 +28,10 @@ public class Board {
 	public Board() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	
+	public String getStrcontent() {
+		return content.replace("\r\n", "<br>");
 	}
 	public String getNum() {
 		return num;
@@ -70,12 +75,20 @@ public class Board {
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	public int getCommentCnt() {
+		return commentCnt;
+	}
+	public void setCommentCnt(int commentCnt) {
+		this.commentCnt = commentCnt;
+	}
 	@Override
 	public String toString() {
 		return "Board [num=" + num + ", title=" + title + ", content=" + content + ", id=" + id + ", postDate="
-				+ postDate + ", viewCnt=" + viewCnt + ", name=" + name + "]";
+				+ postDate + ", viewCnt=" + viewCnt + ", name=" + name + ", commentCnt=" + commentCnt + "]";
 	}
+
+	
+
 	
 	
 }

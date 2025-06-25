@@ -68,7 +68,8 @@ public class BoardDao extends JDBConnect{
                 dto.setPostDate(rs.getTimestamp("postdate"));  // 작성일
                 dto.setId(rs.getString("id"));            // 작성자 아이디
                 dto.setViewCnt(rs.getInt("viewCnt"));  // 조회수
-
+                dto.setCommentCnt(rs.getInt("commentCnt"));
+                
                 bbs.add(dto);  // 결과 목록에 저장
             }
         } 
@@ -125,7 +126,8 @@ public class BoardDao extends JDBConnect{
 				b.setId(rs.getString(4));
 				b.setPostDate(rs.getTimestamp(5));
 				b.setViewCnt(rs.getInt(6));
-				b.setName(rs.getString(7));
+				b.setCommentCnt(rs.getInt(7));
+				b.setName(rs.getString(8));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -144,6 +146,26 @@ public class BoardDao extends JDBConnect{
 			psmt = con.prepareStatement(sql);
 			//4) ? 채우기
 			psmt.setString(1, num);
+			//5) 실행
+			res = psmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return res;
+    }
+    
+    public int updateCommentCnt(String bno, int commentCnt) {
+    	//1) 반환값을 저장할 변수 선언
+    	int res = 0;
+    	try {
+			//2) Sql작성
+			String sql ="update board set commentCnt = commentCnt + ? where num =? ";
+			//3) psmt 생성
+			psmt = con.prepareStatement(sql);
+			//4) ? 채우기
+			psmt.setInt(1, commentCnt);
+			psmt.setString(2,  bno);
 			//5) 실행
 			res = psmt.executeUpdate();
 		} catch (SQLException e) {

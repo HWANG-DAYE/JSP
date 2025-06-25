@@ -81,7 +81,7 @@
 		<span>조회 ${dto.viewCnt }</span>
 	</div>
 	<div id="vcontent">
-		${dto.content }
+		${dto.strcontent }
 	</div>
 	<div id="btns">
 	<c:if test="${not empty dto.id && dto.id eq sessionScope.id }">
@@ -89,13 +89,24 @@
     <button type="button" onclick="deletePost()">삭제하기</button>
 	</c:if>
         <button type="button" onclick="location.href='list'">목록 보기</button>
+        <c:url value="/list2" var="url">
+        	<c:if test="${not empty param.searchWord }">
+        		<c:param name = "searchField"  value="${param.searchField }" />
+        		<c:param name = "searchWord" value="${param.searchWord }" />
+        	</c:if>
+			<c:param name="page" value="${empty param.page ? 1 : param.page }" />
+        </c:url>
+        <button type="button" onclick="location.href='${url}'">목록 보기2</button>
      </div>
 </form>
 <script>
 	function deletePost(){
-		let check = confirm("정말로 삭제하시겠습니까?")
-		let num = document.writeFrm.num.value // document.querySelector("#num").value;
-		if(check) location.href='Delete.jsp?num='+num;				
+		let check = confirm("정말로 삭제하시겠습니까?");
+		if(!check) return;
+		let num = document.viewFrm;	//document.querySelector("#")랑 같은 의미 document.name속성
+		frm.method = "post";
+		frm.action = "delete";
+		frm.submit();
 	}
 </script>
 </body>

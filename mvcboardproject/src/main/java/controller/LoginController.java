@@ -25,6 +25,8 @@ public class LoginController extends HttpServlet {
 		String id = req.getParameter("id");
 		String pwd = req.getParameter("pwd");
 		String rememberId = req.getParameter("rememberId");
+		String url = req.getParameter("url");
+		url = url==null || "".equals(url) ? "main" : url;
 
 		UserDao dao = new UserDao(req.getServletContext());
 		User u = dao.select(id);
@@ -42,7 +44,7 @@ public class LoginController extends HttpServlet {
 			}
 			HttpSession session = req.getSession();
 			session.setAttribute("id", id);
-			resp.sendRedirect("main");
+			resp.sendRedirect(url);
 		} else {
 			req.getRequestDispatcher("/Login.jsp?loginError=error").forward(req, resp);
 		}
